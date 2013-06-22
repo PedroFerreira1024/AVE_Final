@@ -1,0 +1,44 @@
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe.config
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe.config
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.pdb
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\Scribber.ScribberForm.resources
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.exe
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.pdb
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.FormRecord.resources
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe.config
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.exe
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.pdb
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\Scribber.ScribberForm.resources
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\bin\Debug\netscribber.pdb
+E:\Isel Actual\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.Partil.resources
+F:\Dropbox\Ze Trabalho\TrabalhoFinal\Scribber\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\netscribber.exe
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\netscribber.pdb
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\bin\Debug\netscribber.exe
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\bin\Debug\netscribber.pdb
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\Scribber.ScribberForm.resources
+C:\Users\Pedro\Desktop\TrabalhoFinal\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\AVE\AVE_Final\Scribber\bin\Debug\netscribber.exe.config
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\netscribber.exe
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\netscribber.pdb
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\Scribber.ScribberForm.resources
+C:\Users\Pedro\AVE\AVE_Final\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\Scribber.ScribberForm.resources
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\netscribber.exe
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\obj\Debug\netscribber.pdb
+C:\Users\Pedro\Desktop\Nova pasta\Scribber\bin\Debug\netscribber.exe.config
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb

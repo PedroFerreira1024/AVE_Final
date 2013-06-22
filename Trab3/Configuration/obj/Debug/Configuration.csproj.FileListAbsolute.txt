@@ -1,0 +1,2 @@
+C:\Users\Pedro\AVE\AVE_Final\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
