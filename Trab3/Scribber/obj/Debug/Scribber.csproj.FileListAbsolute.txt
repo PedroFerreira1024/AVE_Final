@@ -42,3 +42,11 @@ C:\Users\Pedro\Desktop\Nova pasta\Scribber\bin\Debug\netscribber.exe.config
 C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
 C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
 C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.ScribberForm.resources
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.pdb
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\Configuration.dll
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\bin\Debug\Configuration.pdb
+C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
