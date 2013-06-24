@@ -57,7 +57,7 @@ namespace netscribber
             var formPaint = new ScribberForm();
             var formRecord = new FormRecorder();
 
-            BasicConfiguration<Button> ic = new BasicConfiguration<Button>(formPaint);
+            Configuration<Button> ic = new Configuration<Button>(formPaint);
 
             ic.CustomConfiguration();
 

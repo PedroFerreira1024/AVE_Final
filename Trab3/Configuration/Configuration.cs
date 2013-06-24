@@ -13,7 +13,7 @@ namespace Configuration
     public interface IConfiguration<T>
     {
         IConfigurationItem<K> For<K>() where K : Control;
-        IConfiguration<T> When();
+        //IConfiguration<T> When();
     }
     public interface IConfigurationItem<T>
     {
@@ -26,7 +26,7 @@ namespace Configuration
 
     public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
     {
-        public List<T> _formControls;
+        public List<Control> _formControls;
 
         public List<T> filteredControls;
 
@@ -35,12 +35,12 @@ namespace Configuration
 
         public Configuration(Form f)
         {
-            _formControls = new List<T>();
+            _formControls = new List<Control>();
             foreach (Control c in f.Controls)
-                _formControls.AddRange(getControlsFromControl<T>((T)c,new List<T>()));
+                _formControls.AddRange(getControlsFromControl<Control>(c,new List<Control>()));
         }
 
-        protected List<T> getControlsFromControl<T>(T control, List<T> list) where T : Control
+        private List<T> getControlsFromControl<T>(T control, List<T> list)where T : Control
         {
 
             if (control == null) return new List<T>();
@@ -49,7 +49,7 @@ namespace Configuration
 
             foreach (T t in control.Controls)
             {
-                if (t.GetType().IsSubclassOf(type))
+                if (t.GetType() == type)
                     list.Add(t);
 
                 list.AddRange(getControlsFromControl(t, list));
@@ -58,21 +58,22 @@ namespace Configuration
             return list;
         }
 
-        IConfigurationItem<T> IConfiguration<T>.For<T>(){
+        IConfigurationItem<T> IConfiguration<T>.For<T>()
+        {
             List<T> listControlsT = new List<T>(0);
             Type type = typeof(T);
 
-            foreach (T c in _formControls)
+            foreach (Control c in _formControls)
             {
                 if (c.GetType() == type)
                     listControlsT.Add((T)c);
 
-                //listControlsT.AddRange(getControlsFromControl<T>(c, listControlsT));
+                listControlsT.AddRange(getControlsFromControl<T>((T)c, listControlsT));
            }
 
 
 
-            return null;//new ConfigurationItem<T>(this);
+            return (IConfigurationItem<T>)this;
         }
 
         IConfigurationRestriction<T> IConfigurationItem<T>.WhithName<T>(params String[] controlset)
@@ -83,6 +84,11 @@ namespace Configuration
         IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
         {
             return null;
+        }
+
+        public void CostumConfiguration()
+        {
+            ((IConfiguration<Button>)this).For<Button>();
         }
 
     }
