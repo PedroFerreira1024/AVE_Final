@@ -56,3 +56,5 @@ C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\AVE_Final\Trab3\Scribber\ob
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
