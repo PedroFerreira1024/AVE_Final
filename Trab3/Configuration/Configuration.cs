@@ -25,9 +25,53 @@ namespace Configuration
 
     public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
     {
+        public List<T> _formControls;
+
+        public List<T> filteredControls;
+
+        public Dictionary<Type,List<object>> composedConfiguration;
+
+
+        public Configuration(Form f)
+        {
+            _formControls = new List<T>();
+            foreach (Control c in f.Controls)
+                _formControls.AddRange(getControlsFromControl<T>((T)c,new List<T>()));
+        }
+
+        protected List<T> getControlsFromControl<T>(T control, List<T> list) where T : Control
+        {
+
+            if (control == null) return new List<T>();
+
+            Type type = control.GetType();
+
+            foreach (T t in control.Controls)
+            {
+                if (t.GetType().IsSubclassOf(type))
+                    list.Add(t);
+
+                list.AddRange(getControlsFromControl(t, list));
+            }
+
+            return list;
+        }
 
         IConfigurationItem<T> IConfiguration<T>.For<T>(){
-            return null;
+            List<T> listControlsT = new List<T>(0);
+            Type type = typeof(T);
+
+            foreach (T c in _formControls)
+            {
+                if (c.GetType() == type)
+                    listControlsT.Add((T)c);
+
+                //listControlsT.AddRange(getControlsFromControl<T>(c, listControlsT));
+           }
+
+
+
+            return null;//new ConfigurationItem<T>(this);
         }
 
         IConfigurationRestriction<T> IConfigurationItem<T>.WhithName<T>(params String[] controlset)
@@ -35,7 +79,8 @@ namespace Configuration
             return null;
         }
 
-        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) {
+        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
+        {
             return null;
         }
 
