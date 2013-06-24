@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 
 namespace Configuration
@@ -21,6 +22,8 @@ namespace Configuration
     }
     public interface IConfigurationRestriction<T>
     {
+        IConfigurationRestriction<T> And(Func<object> predicate);//decidir o Func
+        IConfigurationRestriction<T> WithText(String name);
         IConfiguration<T> When<T>(params  String[] eventSet) where T : Control;
     }
 
@@ -29,8 +32,9 @@ namespace Configuration
         public List<Control> _formControls;
 
         public List<T> filteredControls;
+        public List<EventInfo> eventsList;
 
-        public Dictionary<Type,List<object>> composedConfiguration;
+        public Dictionary<Type,List<Configuration<Control>>> composedConfiguration;
 
 
         public Configuration(Form f)
@@ -94,9 +98,41 @@ namespace Configuration
             return (IConfigurationRestriction<T>)this;
         }
 
-        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
+        IConfigurationRestriction<T> IConfigurationRestriction<T>.And(Func<object> predicate)
         {
             return null;
+        }
+
+        IConfigurationRestriction<T> IConfigurationRestriction<T>.WithText(String name)
+        {
+            return null;
+        }
+
+        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
+        {
+            Type controlType = typeof(T);
+            EventInfo ei;
+
+            foreach (String eventName in eventSet)
+            {
+                ei = controlType.GetEvent(eventName);
+                if (ei != null)
+                    eventsList.Add(ei);
+            }
+
+            //List<Configuration<T>> listToAdd = new List<Configuration<T>>();
+            //try
+            //{
+            //    listToAdd.Add(this); // << Erro por nao conseguir converter uma coisa para ela própria
+            //    //composedConfiguration.Add(controlType,listToAdd);
+
+            //}
+            //catch (ArgumentException)
+            //    {
+            //        ((Configuration<Control>)(composedConfiguration[controlType])).eventsList.Add(eventsList);
+            //    }
+
+            return (IConfiguration<T>)this;
         }
 
         public void CostumConfiguration()
