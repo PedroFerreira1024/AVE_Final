@@ -12,11 +12,39 @@ namespace Configuration
 
     public interface IConfiguration<T>
     {
-       ConfigurationItem<T> For<T>() where T : Control;
-       // IConfiguration addPredicate();
+        IConfigurationItem<T> For<T>() where T : Control;
+    }
+    public interface IConfigurationItem<T>
+    {
+        IConfigurationRestriction<T> WhithName<T>(params String[] controlset) where T : Control;
+    }
+    public interface IConfigurationRestriction<T>
+    {
+        IConfiguration<T> When<T>(params  String[] eventSet) where T : Control;
     }
 
-    public class BasicConfiguration<T> : IConfiguration<T> where T : Control//classe <configuration>
+    public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
+    {
+
+        IConfigurationItem<T> IConfiguration<T>.For<T>(){
+            return null;
+        }
+
+        IConfigurationRestriction<T> IConfigurationItem<T>.WhithName<T>(params String[] controlset)
+        {
+            return null;
+        }
+
+        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) {
+            return null;
+        }
+
+    }
+
+
+
+
+    /*public class BasicConfiguration<T> : IConfiguration<T> where T : Control//classe <configuration>
     {
 
         public List<T> _formControls;
@@ -205,5 +233,5 @@ namespace Configuration
         //    this.listControlsWithName = listControlsPredicate.GetEnumerator();
         //    return this;
         //}
-    }
+    }*/
 }
