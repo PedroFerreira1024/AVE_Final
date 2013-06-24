@@ -58,6 +58,11 @@ namespace Configuration
             return list;
         }
 
+        IConfiguration<T> For<T>() where T : Control 
+        {
+            return (IConfiguration<T>)((IConfiguration<T>)this).For<T>();
+        }
+
         IConfigurationItem<T> IConfiguration<T>.For<T>()
         {
             List<T> listControlsT = new List<T>(0);
@@ -70,8 +75,6 @@ namespace Configuration
 
                 listControlsT.AddRange(getControlsFromControl<T>((T)c, listControlsT));
            }
-
-
 
             return (IConfigurationItem<T>)this;
         }
