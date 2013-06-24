@@ -12,7 +12,8 @@ namespace Configuration
 
     public interface IConfiguration<T>
     {
-        IConfigurationItem<T> For<T>() where T : Control;
+        IConfigurationItem<K> For<K>() where K : Control;
+        IConfiguration<T> When();
     }
     public interface IConfigurationItem<T>
     {

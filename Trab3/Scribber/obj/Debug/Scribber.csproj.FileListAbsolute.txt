@@ -53,3 +53,6 @@ C:\Users\Pedro\AVE\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAsse
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.config
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
