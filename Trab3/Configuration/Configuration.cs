@@ -11,6 +11,11 @@ using System.Reflection;
 namespace Configuration
 {
 
+    public class ConfigurationX
+    {
+        //Aglumerado de configurações de um derterminado tipo T
+    }
+
     public interface IConfiguration<T>
     {
         IConfigurationItem<K> For<K>() where K : Control;
@@ -29,13 +34,14 @@ namespace Configuration
 
     public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
     {
-        public List<Control> _formControls;
+        private List<Control> _formControls;
 
+        public Dictionary<String,List<EventInfo>> controlEvents;//« alterar para Um tipo com duas listas ao invez desta lista de Eventinfo
         public List<T> filteredControls;
         public List<EventInfo> eventsList;
+        public List<Func<object>> predicateList;
 
-        public Dictionary<Type,List<Configuration<Control>>> composedConfiguration;
-
+        public Dictionary<Type,List<ConfigurationX>> composedConfiguration;
 
         public Configuration(Form f)
         {
@@ -76,9 +82,7 @@ namespace Configuration
             {
                 if (c.GetType() == type)
                     listControlsT.Add((T)c);
-
-                listControlsT.AddRange(getControlsFromControl<T>((T)c, listControlsT));
-           }
+            }
 
             return (IConfigurationItem<T>)this;
         }
@@ -88,13 +92,26 @@ namespace Configuration
 	        bool isName = false;
 	        foreach(var c in filteredControls){
 		        foreach(var str in controlset){
-			        if(c.Name.Equals(str))
+                    if (Regex.IsMatch(c.Name, str))
 				        isName = true;
 		        }
                 if (!isName)
                     filteredControls.Remove(c);
                 isName = false;
 	        }
+            
+            //
+            //Falta provavelmente adicionar alguma coisa ao dicionario do
+            //
+            try
+            {
+
+            }
+            catch(ArgumentException)
+            {
+
+            }
+
             return (IConfigurationRestriction<T>)this;
         }
 
@@ -105,7 +122,13 @@ namespace Configuration
 
         IConfigurationRestriction<T> IConfigurationRestriction<T>.WithText(String name)
         {
-            return null;
+            bool isName = false;
+            foreach (var c in filteredControls)
+            {
+                if(c.Text.Contains(name))
+                    filteredControls.Remove(c);
+            }
+            return (IConfigurationRestriction<T>)this;
         }
 
         IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
@@ -120,17 +143,27 @@ namespace Configuration
                     eventsList.Add(ei);
             }
 
-            //List<Configuration<T>> listToAdd = new List<Configuration<T>>();
-            //try
-            //{
-            //    listToAdd.Add(this); // << Erro por nao conseguir converter uma coisa para ela própria
-            //    //composedConfiguration.Add(controlType,listToAdd);
 
-            //}
-            //catch (ArgumentException)
-            //    {
-            //        ((Configuration<Control>)(composedConfiguration[controlType])).eventsList.Add(eventsList);
-            //    }
+            try
+            {
+                //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
+            }
+            catch (ArgumentException)
+            {
+                //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo e
+            }
+
+
+            List<ConfigurationX> listToAdd = new List<ConfigurationX>();
+            try
+            {
+                listToAdd.Add(this); // << Erro por nao conseguir converter uma coisa para ela própria
+                //composedConfiguration.Add(controlType,listToAdd);
+            }
+            catch (ArgumentException)
+            {
+                ((Configuration<Control>)(composedConfiguration[controlType])).eventsList.Add(eventsList);
+            }
 
             return (IConfiguration<T>)this;
         }
