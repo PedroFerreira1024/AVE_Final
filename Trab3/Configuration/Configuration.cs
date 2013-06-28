@@ -16,49 +16,58 @@ namespace Configuration
         public List<EventInfo> _listEvent;
         public List<Func<object>> _listfunc;
 
-        ControlConfigPackage() { }
+        public ControlConfigPackage() { }
 
-        ControlConfigPackage(List<EventInfo> list,List<Func<object>> func)
+        public ControlConfigPackage(List<EventInfo> list,List<Func<object>> func)
         {
             _listEvent = list;
             _listfunc  = func;
         }
     }
 
-
-    public class ConfigurationX
+    public class ConfigurationX<T> where T:Control
     {
-        //Aglumerado de configurações de um derterminado tipo T
+        public Dictionary<String, ControlConfigPackage> controlEventsAndPredicates;
+        public List<T> controls;
+
+        public ConfigurationX(Dictionary<String, ControlConfigPackage> dictionary, List<T> list)
+        {
+            controlEventsAndPredicates = dictionary;
+            controls = list;
+        }
     }
 
-    public interface IConfiguration<T>
+
+    public interface IConfiguration<T>where T : Control
     {
         IConfigurationItem<K> For<K>() where K : Control;
-        //IConfiguration<T> When();
+        IConfiguration<T> When(params  String[] eventSet);
+        IConfigurationRestriction<T> WithName(params String[] controlset);
     }
-    public interface IConfigurationItem<T>
+
+    public interface IConfigurationItem<T> where T : Control
     {
-        IConfigurationRestriction<T> WhithName<T>(params String[] controlset) where T : Control;
+        IConfigurationRestriction<T> WithName(params String[] controlset);
     }
-    public interface IConfigurationRestriction<T>
+
+    public interface IConfigurationRestriction<T> where T : Control
     {
         IConfigurationRestriction<T> And(Func<object> predicate);//decidir o Func
         IConfigurationRestriction<T> WithText(String name);
-        IConfiguration<T> When<T>(params  String[] eventSet) where T : Control;
+        IConfiguration<T> When(params  String[] eventSet);
     }
 
     public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
     {
         private List<Control> _formControls;
 
-       // public Dictionary<String,List<EventInfo>> controlEvents;//« alterar para Um tipo com duas listas ao invez desta lista de Eventinfo
-          public Dictionary<String, ControlConfigPackage> controlEvents;
+        public Dictionary<String, ControlConfigPackage> controlEvents;
         
-        public List<T> filteredControls;
+        public List<Control> filteredControls;
         public List<EventInfo> eventsList;
         public List<Func<object>> predicateList;
 
-        public Dictionary<Type,List<ConfigurationX>> composedConfiguration;
+        public Dictionary<Type,List<ConfigurationX<Control>>> composedConfiguration;
 
         public Configuration(Form f)
         {
@@ -92,51 +101,50 @@ namespace Configuration
 
         IConfigurationItem<T> IConfiguration<T>.For<T>()
         {
-            List<T> listControlsT = new List<T>(0);
             Type type = typeof(T);
 
-            foreach (Control c in _formControls)
+            foreach (T c in _formControls)
             {
                 if (c.GetType() == type)
-                    listControlsT.Add((T)c);
+                    filteredControls.Add(c);
             }
-
             return (IConfigurationItem<T>)this;
         }
 
-        IConfigurationRestriction<T> IConfigurationItem<T>.WhithName<T>(params String[] controlset)
+        public IConfigurationRestriction<T> WithName(params string[] controlset)
         {
-	        bool isName = false;
-	        foreach(var c in filteredControls){
-		        foreach(var str in controlset){
+            bool isName = false;
+            foreach (Control c in filteredControls)
+            {
+                foreach (String str in controlset)
+                {
                     if (Regex.IsMatch(c.Name, str))
-				        isName = true;
-		        }
+                        isName = true;
+                }
                 if (!isName)
                     filteredControls.Remove(c);
                 isName = false;
-	        }
-            
+            }
+
             //
             //Falta provavelmente adicionar alguma coisa ao dicionario do
             //
 
-            foreach (T control in filteredControls)
+            foreach (Control control in filteredControls)
             {
-
                 try
                 {
                     controlEvents.Add(control.Name, new ControlConfigPackage());
-
                 }
-                catch (ArgumentException){}
+                catch (ArgumentException) { }
             }
             return (IConfigurationRestriction<T>)this;
         }
 
         IConfigurationRestriction<T> IConfigurationRestriction<T>.And(Func<object> predicate)
         {
-            return null;
+            predicateList.Add(predicate);
+            return (IConfigurationRestriction<T>)this;
         }
 
         IConfigurationRestriction<T> IConfigurationRestriction<T>.WithText(String name)
@@ -150,7 +158,8 @@ namespace Configuration
             return (IConfigurationRestriction<T>)this;
         }
 
-        IConfiguration<T> IConfigurationRestriction<T>.When<T>(params  String[] eventSet) 
+
+        public IConfiguration<T> When(params string[] eventSet)
         {
             Type controlType = typeof(T);
             EventInfo ei;
@@ -182,16 +191,18 @@ namespace Configuration
 
             }
 
-            List<ConfigurationX> listToAdd = new List<ConfigurationX>();
+            List<ConfigurationX<Control>> listToAdd = new List<ConfigurationX<Control>>();
+            listToAdd.Add(new ConfigurationX<Control>(controlEvents, filteredControls));///////////////////////////////////////////////////////////////////////////////
             try
             {
-                listToAdd.Add(this); // << Erro por nao conseguir converter uma coisa para ela própria
-                //composedConfiguration.Add(controlType,listToAdd);
+                composedConfiguration[controlType].Add(new ConfigurationX<Control>(controlEvents, filteredControls));
             }
-            catch (ArgumentException)
+            catch (KeyNotFoundException)
             {
-                ((Configuration<Control>)(composedConfiguration[controlType])).eventsList.Add(eventsList);
+                composedConfiguration.Add(controlType, listToAdd);
             }
+
+            //limpar campos auxiliares
 
             return (IConfiguration<T>)this;
         }
@@ -201,5 +212,6 @@ namespace Configuration
             ((IConfiguration<Button>)this).For<Button>();
         }
 
+        
     }
 }
