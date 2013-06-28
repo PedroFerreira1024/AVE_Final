@@ -12,3 +12,6 @@ C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\AVE_Final\Trab3\Configurati
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.dll
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.pdb
+E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
+E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.dll
+E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.pdb

@@ -11,6 +11,19 @@ using System.Reflection;
 namespace Configuration
 {
 
+    public class ControlConfigPackage
+    {
+        public List<EventInfo> _listEvent;
+        public List<Func> _listfunc;
+
+        ControlConfigPackage(List<EventInfo> list,List<Func> func)
+        {
+            _listEvent = list;
+            _listfunc  = func;
+        }
+    }
+
+
     public class ConfigurationX
     {
         //Aglumerado de configurações de um derterminado tipo T
@@ -36,7 +49,9 @@ namespace Configuration
     {
         private List<Control> _formControls;
 
-        public Dictionary<String,List<EventInfo>> controlEvents;//« alterar para Um tipo com duas listas ao invez desta lista de Eventinfo
+       // public Dictionary<String,List<EventInfo>> controlEvents;//« alterar para Um tipo com duas listas ao invez desta lista de Eventinfo
+          public Dictionary<String, ControlConfigPackage> controlEvents;
+        
         public List<T> filteredControls;
         public List<EventInfo> eventsList;
         public List<Func<object>> predicateList;
@@ -144,13 +159,18 @@ namespace Configuration
             }
 
 
+
+            foreach(var control in _formControls)
+            
             try
             {
+                controlEvents.Add(control.Name,eventsList);
                 //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
             }
             catch (ArgumentException)
             {
-                //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo e
+                controlEvents[control.Name].AddRange(eventsList);
+                //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
             }
 
 
