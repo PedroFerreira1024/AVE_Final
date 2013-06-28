@@ -14,9 +14,11 @@ namespace Configuration
     public class ControlConfigPackage
     {
         public List<EventInfo> _listEvent;
-        public List<Func> _listfunc;
+        public List<Func<object>> _listfunc;
 
-        ControlConfigPackage(List<EventInfo> list,List<Func> func)
+        ControlConfigPackage() { }
+
+        ControlConfigPackage(List<EventInfo> list,List<Func<object>> func)
         {
             _listEvent = list;
             _listfunc  = func;
@@ -118,15 +120,17 @@ namespace Configuration
             //
             //Falta provavelmente adicionar alguma coisa ao dicionario do
             //
-            try
+
+            foreach (T control in filteredControls)
             {
 
-            }
-            catch(ArgumentException)
-            {
+                try
+                {
+                    controlEvents.Add(control.Name, new ControlConfigPackage());
 
+                }
+                catch (ArgumentException){}
             }
-
             return (IConfigurationRestriction<T>)this;
         }
 
@@ -160,19 +164,23 @@ namespace Configuration
 
 
 
-            foreach(var control in _formControls)
-            
-            try
+            foreach (var control in _formControls)
             {
-                controlEvents.Add(control.Name,eventsList);
-                //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
-            }
-            catch (ArgumentException)
-            {
-                controlEvents[control.Name].AddRange(eventsList);
-                //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
-            }
 
+                try
+                {
+                    controlEvents.Add(control.Name, new ControlConfigPackage(eventsList, predicateList));
+                    //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
+                }
+                catch (ArgumentException)
+                {
+                    controlEvents[control.Name]._listEvent.AddRange(eventsList);
+                    controlEvents[control.Name]._listfunc.AddRange(predicateList);
+
+                    //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
+                }
+
+            }
 
             List<ConfigurationX> listToAdd = new List<ConfigurationX>();
             try
