@@ -49,9 +49,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{11eee386-2c8c-4105-a84c-84f6c453d13d}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Recorder\Recorder.csproj">
       <Project>{e9f47fe6-372d-4c4a-aa47-e4cc3782b350}</Project>
       <Name>Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scribber\Scribber.csproj">
+      <Project>{324f38d6-1fad-4fa2-8bbf-59347b8f3f3c}</Project>
+      <Name>Scribber</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

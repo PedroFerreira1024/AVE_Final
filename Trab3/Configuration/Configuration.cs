@@ -16,7 +16,10 @@ namespace Configuration
         public List<EventInfo> _listEvent;
         public List<Func<object>> _listfunc;
 
-        public ControlConfigPackage() { }
+        public ControlConfigPackage() {
+            _listEvent = new List<EventInfo>();
+            _listfunc = new List<Func<object>>();
+        }
 
         public ControlConfigPackage(List<EventInfo> list,List<Func<object>> func)
         {
@@ -71,19 +74,29 @@ namespace Configuration
 
         public Configuration(Form f)
         {
+            filteredControls = new List<Control>();
+            eventsList = new List<EventInfo>();
+            predicateList = new List<Func<Object>>();
+            composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
+            controlEvents = new Dictionary<String, ControlConfigPackage>();
+
             _formControls = new List<Control>();
             foreach (Control c in f.Controls)
-                _formControls.AddRange(getControlsFromControl<Control>(c,new List<Control>()));
+            {
+                _formControls.Add(c);
+                _formControls.AddRange(getControlsFromControl<Control>(c, new List<Control>()));
+
+            }
         }
 
-        private List<T> getControlsFromControl<T>(T control, List<T> list)where T : Control
+        private List<Control> getControlsFromControl<T>(T control, List<Control> list)where T : Control
         {
 
-            if (control == null) return new List<T>();
+            if (control == null) return new List<Control>();
 
             Type type = control.GetType();
 
-            foreach (T t in control.Controls)
+            foreach (Control t in control.Controls)
             {
                 if (t.GetType() == type)
                     list.Add(t);
@@ -94,16 +107,16 @@ namespace Configuration
             return list;
         }
 
-        IConfiguration<T> For<T>() where T : Control 
+        IConfigurationItem<T> For<T>() where T : Control 
         {
-            return (IConfiguration<T>)((IConfiguration<T>)this).For<T>();
+            return((IConfiguration<T>)this).For<T>();
         }
 
         IConfigurationItem<T> IConfiguration<T>.For<T>()
         {
             Type type = typeof(T);
-
-            foreach (T c in _formControls)
+               
+            foreach (Control c in _formControls)
             {
                 if (c.GetType() == type)
                     filteredControls.Add(c);
@@ -113,18 +126,16 @@ namespace Configuration
 
         public IConfigurationRestriction<T> WithName(params string[] controlset)
         {
-            bool isName = false;
+            List<Control> listr = new List<Control>();
             foreach (Control c in filteredControls)
             {
                 foreach (String str in controlset)
                 {
                     if (Regex.IsMatch(c.Name, str))
-                        isName = true;
+                        listr.Add(c);
                 }
-                if (!isName)
-                    filteredControls.Remove(c);
-                isName = false;
             }
+            filteredControls = listr;
 
             //
             //Falta provavelmente adicionar alguma coisa ao dicionario do
@@ -162,18 +173,22 @@ namespace Configuration
         public IConfiguration<T> When(params string[] eventSet)
         {
             Type controlType = typeof(T);
-            EventInfo ei;
 
             foreach (String eventName in eventSet)
             {
-                ei = controlType.GetEvent(eventName);
-                if (ei != null)
-                    eventsList.Add(ei);
+                EventInfo [] eventos = controlType.GetEvents();
+
+                foreach (EventInfo e in eventos) {
+                    if(Regex.IsMatch(e.Name,eventName))
+                        eventsList.Add(e);
+                }
+
+               
             }
 
 
 
-            foreach (var control in _formControls)
+            foreach (var control in filteredControls)
             {
                 try
                 {
@@ -187,17 +202,18 @@ namespace Configuration
                     //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
                 }
 
-                filteredControls.Clear();
-                eventsList.Clear();
-                predicateList.Clear();
 
             }
+
+            filteredControls.Clear();
+            eventsList.Clear();
+            predicateList.Clear();
 
             List<ConfigurationX<Control>> listToAdd = new List<ConfigurationX<Control>>();
             listToAdd.Add(new ConfigurationX<Control>(controlEvents, filteredControls));///////////////////////////////////////////////////////////////////////////////
             try
             {
-                composedConfiguration[controlType].Add(new ConfigurationX<Control>(controlEvents, filteredControls));
+                composedConfiguration[controlType].AddRange(listToAdd);
             }
             catch (KeyNotFoundException)
             {
@@ -211,7 +227,7 @@ namespace Configuration
 
         public void CostumConfiguration()
         {
-            ((IConfiguration<Button>)this).For<Button>();
+            For<Button>().WithName("Clear").When(".*");
         }
 
         

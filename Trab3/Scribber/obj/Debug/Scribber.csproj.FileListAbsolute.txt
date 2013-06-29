@@ -87,3 +87,11 @@ E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Scribber\bin\Debug\Configu
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.ScribberForm.resources
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.pdb
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\Configuration.dll
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\Configuration.pdb
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.ScribberForm.resources
+C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
