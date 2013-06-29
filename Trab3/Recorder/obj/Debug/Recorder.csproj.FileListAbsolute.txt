@@ -1,0 +1,4 @@
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.csprojResolveAssemblyReference.cache
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\netscribber.FormRecorder.resources
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.Properties.Resources.resources
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.csproj.GenerateResource.Cache

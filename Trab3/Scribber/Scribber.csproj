@@ -93,19 +93,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configurador.cs" />
-    <Compile Include="FormRecorder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRecorder.Designer.cs">
-      <DependentUpon>FormRecorder.cs</DependentUpon>
-    </Compile>
     <Compile Include="ScribberForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Content Include="App.ico" />
-    <EmbeddedResource Include="FormRecorder.resx">
-      <DependentUpon>FormRecorder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ScribberForm.resx">
       <DependentUpon>ScribberForm.cs</DependentUpon>
     </EmbeddedResource>

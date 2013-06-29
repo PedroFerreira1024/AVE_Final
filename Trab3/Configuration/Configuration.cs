@@ -63,9 +63,9 @@ namespace Configuration
 
         public Dictionary<String, ControlConfigPackage> controlEvents;
         
-        public List<Control> filteredControls;
-        public List<EventInfo> eventsList;
-        public List<Func<object>> predicateList;
+        private List<Control> filteredControls;
+        private List<EventInfo> eventsList;
+        private List<Func<object>> predicateList;
 
         public Dictionary<Type,List<ConfigurationX<Control>>> composedConfiguration;
 
@@ -175,7 +175,6 @@ namespace Configuration
 
             foreach (var control in _formControls)
             {
-
                 try
                 {
                     controlEvents.Add(control.Name, new ControlConfigPackage(eventsList, predicateList));
@@ -185,9 +184,12 @@ namespace Configuration
                 {
                     controlEvents[control.Name]._listEvent.AddRange(eventsList);
                     controlEvents[control.Name]._listfunc.AddRange(predicateList);
-
                     //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
                 }
+
+                filteredControls.Clear();
+                eventsList.Clear();
+                predicateList.Clear();
 
             }
 
