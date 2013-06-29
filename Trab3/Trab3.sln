@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configurat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recorder", "Recorder\Recorder.csproj", "{E9F47FE6-372D-4C4A-AA47-E4CC3782B350}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{8331979F-807F-4813-AAA2-7B7E6572BDD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{E9F47FE6-372D-4C4A-AA47-E4CC3782B350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9F47FE6-372D-4C4A-AA47-E4CC3782B350}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9F47FE6-372D-4C4A-AA47-E4CC3782B350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8331979F-807F-4813-AAA2-7B7E6572BDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8331979F-807F-4813-AAA2-7B7E6572BDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8331979F-807F-4813-AAA2-7B7E6572BDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8331979F-807F-4813-AAA2-7B7E6572BDD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,3 +2,8 @@ E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorde
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\netscribber.FormRecorder.resources
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.Properties.Resources.resources
 E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.csproj.GenerateResource.Cache
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.exe.config
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.exe
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.pdb
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.exe
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.pdb

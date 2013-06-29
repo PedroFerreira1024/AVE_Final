@@ -1,0 +1,8 @@
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\obj\Debug\App.csprojResolveAssemblyReference.cache
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\bin\Debug\App.exe.config
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\bin\Debug\App.exe
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\bin\Debug\App.pdb
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\bin\Debug\Recorder.exe
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\bin\Debug\Recorder.pdb
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\obj\Debug\App.exe
+E:\Isel Actual\cadeiras\Ave\AVE_Final\AVE_Final\Trab3\App\obj\Debug\App.pdb

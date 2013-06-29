@@ -92,7 +92,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configurador.cs" />
+    <Compile Include="Class2.cs" />
     <Compile Include="ScribberForm.cs">
       <SubType>Form</SubType>
     </Compile>

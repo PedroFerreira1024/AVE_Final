@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace Recorder
 {
+   
     static class Program
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace Recorder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormRecoder());
+           // Application.Run(new FormRecoder());
         }
     }
 }
