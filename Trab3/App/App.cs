@@ -9,7 +9,7 @@ using Recorder;
 
 namespace App
 {
-    class Program
+    class App
     {
       
         static void Main(string[] args)
@@ -20,7 +20,8 @@ namespace App
             var config = new Configuration<Control>(form);
             config.CostumConfiguration();
 
-            var recorderService = RecorderReplayer<Control>.Create(config, form);
+            var recorderService = RecorderReplayer.Create(config, form);
+            recorderService.Start();
 
             Application.Run(form);
         }

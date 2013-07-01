@@ -50,7 +50,7 @@
     <Compile Include="FormRecorder.Designer.cs">
       <DependentUpon>FormRecorder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="RecorderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormRecorder.resx">
       <DependentUpon>FormRecorder.cs</DependentUpon>

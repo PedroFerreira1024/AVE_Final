@@ -26,3 +26,4 @@ C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Configuration\bin\Debug\Con
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.dll
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache

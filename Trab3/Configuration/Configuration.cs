@@ -14,14 +14,14 @@ namespace Configuration
     public class ControlConfigPackage
     {
         public List<EventInfo> _listEvent;
-        public List<Func<object>> _listfunc;
+        public List<Func<Control,bool>> _listfunc;
 
         public ControlConfigPackage() {
             _listEvent = new List<EventInfo>();
-            _listfunc = new List<Func<object>>();
+            _listfunc = new List<Func<Control,bool>>();
         }
 
-        public ControlConfigPackage(List<EventInfo> list,List<Func<object>> func)
+        public ControlConfigPackage(List<EventInfo> list,List<Func<Control,bool>> func)
         {
             _listEvent = list;
             _listfunc  = func;
@@ -55,7 +55,7 @@ namespace Configuration
 
     public interface IConfigurationRestriction<T> where T : Control
     {
-        IConfigurationRestriction<T> And(Func<object> predicate);//decidir o Func
+        IConfigurationRestriction<T> And(Func<Control,bool> predicate);//decidir o Func
         IConfigurationRestriction<T> WithText(String name);
         IConfiguration<T> When(params  String[] eventSet);
     }
@@ -68,7 +68,7 @@ namespace Configuration
         
         private List<Control> filteredControls;
         private List<EventInfo> eventsList;
-        private List<Func<object>> predicateList;
+        private List<Func<Control,bool>> predicateList;
 
         public Dictionary<Type,List<ConfigurationX<Control>>> composedConfiguration;
 
@@ -76,7 +76,7 @@ namespace Configuration
         {
             filteredControls = new List<Control>();
             eventsList = new List<EventInfo>();
-            predicateList = new List<Func<Object>>();
+            predicateList = new List<Func<Control, bool>>();
             composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
             controlEvents = new Dictionary<String, ControlConfigPackage>();
 
@@ -85,8 +85,22 @@ namespace Configuration
             {
                 _formControls.Add(c);
                 _formControls.AddRange(getControlsFromControl<Control>(c, new List<Control>()));
-
             }
+        }
+
+        public Configuration(List<Control> controls, List<Control> filtered)
+        {
+            _formControls = controls;
+            filteredControls = filtered;
+
+            eventsList = new List<EventInfo>();
+            predicateList = new List<Func<Control, bool>>();
+            composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
+            controlEvents = new Dictionary<String, ControlConfigPackage>();
+        }
+
+        public Dictionary<Type, List<ConfigurationX<Control>>> getComposedConfiguration() {
+            return composedConfiguration;
         }
 
         private List<Control> getControlsFromControl<T>(T control, List<Control> list)where T : Control
@@ -109,7 +123,7 @@ namespace Configuration
 
         IConfigurationItem<T> For<T>() where T : Control 
         {
-            return((IConfiguration<T>)this).For<T>();
+            return((IConfiguration<T>)new Configuration<T>(_formControls,filteredControls)).For<T>();
         }
 
         IConfigurationItem<T> IConfiguration<T>.For<T>()
@@ -121,7 +135,7 @@ namespace Configuration
                 if (c.GetType() == type)
                     filteredControls.Add(c);
             }
-            return (IConfigurationItem<T>)this;
+            return (IConfigurationItem<T>)new Configuration<T>(_formControls, filteredControls);
         }
 
         public IConfigurationRestriction<T> WithName(params string[] controlset)
@@ -152,7 +166,7 @@ namespace Configuration
             return (IConfigurationRestriction<T>)this;
         }
 
-        IConfigurationRestriction<T> IConfigurationRestriction<T>.And(Func<object> predicate)
+        IConfigurationRestriction<T> IConfigurationRestriction<T>.And(Func<Control,bool> predicate)
         {
             predicateList.Add(predicate);
             return (IConfigurationRestriction<T>)this;
@@ -181,12 +195,8 @@ namespace Configuration
                 foreach (EventInfo e in eventos) {
                     if(Regex.IsMatch(e.Name,eventName))
                         eventsList.Add(e);
-                }
-
-               
+                }  
             }
-
-
 
             foreach (var control in filteredControls)
             {
@@ -205,9 +215,7 @@ namespace Configuration
 
             }
 
-            filteredControls.Clear();
-            eventsList.Clear();
-            predicateList.Clear();
+            
 
             List<ConfigurationX<Control>> listToAdd = new List<ConfigurationX<Control>>();
             listToAdd.Add(new ConfigurationX<Control>(controlEvents, filteredControls));///////////////////////////////////////////////////////////////////////////////
@@ -220,14 +228,20 @@ namespace Configuration
                 composedConfiguration.Add(controlType, listToAdd);
             }
 
-            //limpar campos auxiliares
+            filteredControls.Clear();
+            eventsList.Clear();
+            predicateList.Clear();
 
             return (IConfiguration<T>)this;
         }
-
+        
         public void CostumConfiguration()
         {
-            For<Button>().WithName("Clear").When(".*");
+            //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
+            Configuration<Button> this2 = (Configuration<Button>) For<Button>().WithName("Clear").When(".*");
+
+            this.composedConfiguration = this2.composedConfiguration;
+            this.controlEvents = this2.controlEvents;
         }
 
         

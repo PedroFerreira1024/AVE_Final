@@ -18,3 +18,14 @@ C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Recorder\bin\Debug\Recorder
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.pdb
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Recorder\bin\Debug\Configuration.dll
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Recorder\bin\Debug\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.exe.config
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Debug\Recorder.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Debug\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Debug\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\netscribber.FormRecorder.resources
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.Properties.Resources.resources
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.csproj.GenerateResource.Cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Debug\Recorder.pdb

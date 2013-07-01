@@ -70,7 +70,6 @@ E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.Scribber
 E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
 E:\Isel Actual\cadeiras\Ave\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.pdb
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
-C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\netscribber.FormRecorder.resources
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.ScribberForm.resources
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe
