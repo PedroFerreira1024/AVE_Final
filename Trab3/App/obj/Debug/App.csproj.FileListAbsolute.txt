@@ -30,3 +30,5 @@ C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Debug\Configuration.pdb
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Debug\Recorder.pdb
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Debug\netscribber.pdb
 C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\obj\Debug\App.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Debug\CodeSelector.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Debug\CodeSelector.pdb

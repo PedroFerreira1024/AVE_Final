@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Desktop\TrabalhoFinal\CodeSelector\CodeSelector.csproj">
+      <Project>{e6a29e16-e312-49f1-8c87-60d435d3bbac}</Project>
+      <Name>CodeSelector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Configuration\Configuration.csproj">
       <Project>{11eee386-2c8c-4105-a84c-84f6c453d13d}</Project>
       <Name>Configuration</Name>

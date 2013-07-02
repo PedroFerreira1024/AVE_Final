@@ -31,7 +31,7 @@
             this.Recoder_Stop = new System.Windows.Forms.Button();
             this.Replay = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
-            this.ListEvents = new System.Windows.Forms.ListBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // Recoder_Stop
@@ -64,21 +64,22 @@
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
-            // ListEvents
+            // richTextBox1
             // 
-            this.ListEvents.FormattingEnabled = true;
-            this.ListEvents.Location = new System.Drawing.Point(12, 12);
-            this.ListEvents.Name = "ListEvents";
-            this.ListEvents.Size = new System.Drawing.Size(529, 355);
-            this.ListEvents.TabIndex = 3;
-            this.ListEvents.SelectedIndexChanged += new System.EventHandler(this.ListEvents_SelectedIndexChanged);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 6);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(531, 391);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // FormRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 469);
-            this.Controls.Add(this.ListEvents);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.Replay);
             this.Controls.Add(this.Recoder_Stop);
@@ -93,6 +94,6 @@
         private System.Windows.Forms.Button Recoder_Stop;
         private System.Windows.Forms.Button Replay;
         private System.Windows.Forms.Button Clear;
-        private System.Windows.Forms.ListBox ListEvents;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

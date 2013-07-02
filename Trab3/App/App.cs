@@ -14,16 +14,16 @@ namespace App
       
         static void Main(string[] args)
         {
-
-
-            var form = new FormRecorder();
-            var config = new Configuration<Control>(form);
+            var recorderForm = new FormRecorder();
+            var toWatchForm = new CodeSelectorForm();
+            var config = new Configuration<Control>(toWatchForm);
             config.CostumConfiguration();
 
-            var recorderService = RecorderReplayer.Create(config, form);
+            var recorderService = new RecorderReplayer(config,recorderForm);
             recorderService.Start();
 
-            Application.Run(form);
+            recorderForm.Show();
+            Application.Run(toWatchForm);
         }
     }
 }

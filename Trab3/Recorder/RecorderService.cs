@@ -9,56 +9,56 @@ using System.Reflection;
 
 namespace Recorder
 {
-    public delegate void delegateEvent(Object sender, EventArgs args);
-
     public class RecordPackage
     {
-        public Configuration<Control> config;
-        public FormRecorder form;
-        public delegateEvent del;
+        
+        public EventInfo eventI;
+        public Control current;
+        public RichTextBox toAct;
+        public Type eventType;
 
-        public RecordPackage(Configuration<Control> config, FormRecorder form, delegateEvent del)
+
+        public RecordPackage(Control currentControl,RichTextBox toAct, EventInfo eventI)
         {
-            this.config = config;
-            this.form = form;
-            this.del = del;
+            this.toAct = toAct;
+            this.eventI = eventI;
+            this.current = currentControl;
+            eventType = eventI.EventHandlerType;
         }
 
-        public void Start()
+        public void funcDelegate(Object sender, EventArgs args)
         {
-            var dic = config.getComposedConfiguration();
+            Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
 
-            foreach (List<ConfigurationX<Control>> elem in dic.Values) //Percorre o dicionario do composedconfiguration
-                foreach (ConfigurationX<Control> configX in elem)   // Percorre a lista ConfigurationX
-                    foreach (var configXDic in configX.controlEventsAndPredicates.Values) // percorre o dicionario do tipo configurationX
-                        foreach (var eventElem in configXDic._listEvent) //percorre a lista de eventos
-                            eventElem.AddEventHandler(null, del);
+            toAct.AppendText("XXX\n");
+
+            //MethodInfo writerFunc = GetType().GetMethod("richTextBox1_TextChanged", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Delegate d = Delegate.CreateDelegate( , writerFunc);
+
         }
+        
     }
 
     public class RecorderReplayer
     {
-
+        private static String TEXTBOX_NAME = "richTextBox1";
         static FormRecorder formRecorder;
+        static Configuration<Control> config;
 
-        public static void funcDelegate(Object sender, EventArgs args)
+        public RecorderReplayer(Configuration<Control> configuration, FormRecorder form)
         {
-            Control[] f = formRecorder.Controls.Find("ListEvents", true);
-            Control c = (Control)sender;
-            f[0].Text += (args.GetType().Name + " at " + TimeZone.CurrentTimeZone + " on " + c.Name + " " + sender.GetType().Name + "\n");
-            Console.WriteLine(args.GetType().Name + " at " + TimeZone.CurrentTimeZone + " on " + c.Name + " " + sender.GetType().Name + "\n");
-        }
-
-        public static RecordPackage Create(Configuration<Control> config, FormRecorder form)
-        {
+            config = configuration;
             formRecorder = form;
-            return new RecordPackage(config, form, funcDelegate);
         }
 
-
+        public void Start()
+        {
+            formRecorder.Start(config);
+        }
     }
     
-    static class RecorderService
+    public class RecorderService
     {
         
         [STAThread]

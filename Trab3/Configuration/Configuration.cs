@@ -30,10 +30,10 @@ namespace Configuration
 
     public class ConfigurationX<T> where T:Control
     {
-        public Dictionary<String, ControlConfigPackage> controlEventsAndPredicates;
+        public Dictionary<Control, ControlConfigPackage> controlEventsAndPredicates;
         public List<T> controls;
 
-        public ConfigurationX(Dictionary<String, ControlConfigPackage> dictionary, List<T> list)
+        public ConfigurationX(Dictionary<Control, ControlConfigPackage> dictionary, List<T> list)
         {
             controlEventsAndPredicates = dictionary;
             controls = list;
@@ -64,7 +64,7 @@ namespace Configuration
     {
         private List<Control> _formControls;
 
-        public Dictionary<String, ControlConfigPackage> controlEvents;
+        public Dictionary<Control, ControlConfigPackage> controlEvents;
         
         private List<Control> filteredControls;
         private List<EventInfo> eventsList;
@@ -78,7 +78,7 @@ namespace Configuration
             eventsList = new List<EventInfo>();
             predicateList = new List<Func<Control, bool>>();
             composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
-            controlEvents = new Dictionary<String, ControlConfigPackage>();
+            controlEvents = new Dictionary<Control, ControlConfigPackage>();
 
             _formControls = new List<Control>();
             foreach (Control c in f.Controls)
@@ -96,7 +96,7 @@ namespace Configuration
             eventsList = new List<EventInfo>();
             predicateList = new List<Func<Control, bool>>();
             composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
-            controlEvents = new Dictionary<String, ControlConfigPackage>();
+            controlEvents = new Dictionary<Control, ControlConfigPackage>();
         }
 
         public Dictionary<Type, List<ConfigurationX<Control>>> getComposedConfiguration() {
@@ -159,7 +159,7 @@ namespace Configuration
             {
                 try
                 {
-                    controlEvents.Add(control.Name, new ControlConfigPackage());
+                    controlEvents.Add(control, new ControlConfigPackage());
                 }
                 catch (ArgumentException) { }
             }
@@ -202,13 +202,13 @@ namespace Configuration
             {
                 try
                 {
-                    controlEvents.Add(control.Name, new ControlConfigPackage(eventsList, predicateList));
+                    controlEvents.Add(control, new ControlConfigPackage(eventsList, predicateList));
                     //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
                 }
                 catch (ArgumentException)
                 {
-                    controlEvents[control.Name]._listEvent.AddRange(eventsList);
-                    controlEvents[control.Name]._listfunc.AddRange(predicateList);
+                    controlEvents[control]._listEvent.AddRange(eventsList);
+                    controlEvents[control]._listfunc.AddRange(predicateList);
                     //caso já já esteja algum evento marcado para o controlo, acrescentar a lista o novo evento ...
                 }
 
@@ -238,7 +238,7 @@ namespace Configuration
         public void CostumConfiguration()
         {
             //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
-            Configuration<Button> this2 = (Configuration<Button>) For<Button>().WithName("Clear").When(".*");
+            Configuration<Button> this2 = (Configuration<Button>)For<Button>().WithName(".*").When("MouseUp");
 
             this.composedConfiguration = this2.composedConfiguration;
             this.controlEvents = this2.controlEvents;
