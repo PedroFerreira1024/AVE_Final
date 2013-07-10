@@ -14,23 +14,24 @@ namespace Recorder
         
         public EventInfo eventI;
         public Control current;
-        public RichTextBox toAct;
+        public FormRecorder toAct;
         public Type eventType;
 
 
-        public RecordPackage(Control currentControl,RichTextBox toAct, EventInfo eventI)
+        public RecordPackage(Control currentControl,Form toAct, EventInfo eventI)
         {
-            this.toAct = toAct;
+            this.toAct = (FormRecorder)toAct;
             this.eventI = eventI;
             this.current = currentControl;
             eventType = eventI.EventHandlerType;
+
         }
 
         public void funcDelegate(Object sender, EventArgs args)
         {
             Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
-
-            toAct.AppendText("XXX\n");
+            if (toAct.RecordPressed)
+                toAct.richTextBox1.AppendText("XXX\n");
 
             //MethodInfo writerFunc = GetType().GetMethod("richTextBox1_TextChanged", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -54,7 +55,7 @@ namespace Recorder
 
         public void Start()
         {
-            formRecorder.Start(config);
+            formRecorder.EnableRecord(config);
         }
     }
     

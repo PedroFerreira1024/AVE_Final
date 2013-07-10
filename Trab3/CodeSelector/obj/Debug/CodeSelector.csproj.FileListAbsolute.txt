@@ -1,0 +1,9 @@
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\bin\Debug\CodeSelector.exe.config
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\bin\Debug\CodeSelector.exe
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\bin\Debug\CodeSelector.pdb
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelector.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelectorForm.resources
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelector.Properties.Resources.resources
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelector.csproj.GenerateResource.Cache
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelector.exe
+C:\Users\Pedro\Desktop\TrabalhoFinal\CodeSelector\obj\Debug\CodeSelector.pdb

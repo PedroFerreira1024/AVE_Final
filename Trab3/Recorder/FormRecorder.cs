@@ -17,7 +17,7 @@ namespace netscribber
 {
     public partial class FormRecorder : Form
     {
-        private bool buttonPress;
+        public bool RecordPressed;
         public FormRecorder()
         {
             InitializeComponent();
@@ -25,15 +25,15 @@ namespace netscribber
 
         private void Recoder_Stop_Click(object sender, EventArgs e)
         {
-            if (!buttonPress)
+            if (!RecordPressed)
             {
                 this.Recoder_Stop.Text = "Stop";
-                this.buttonPress = true;
+                this.RecordPressed = true;
             }
             else
             {
                 this.Recoder_Stop.Text = "Recorder";
-                this.buttonPress = false;
+                this.RecordPressed = false;
             }
         }
 
@@ -51,7 +51,7 @@ namespace netscribber
         {
         }
 
-        public void Start(Configuration<Control> config)
+        public void EnableRecord(Configuration<Control> config)
         {
             var dic = config.getComposedConfiguration();
 
@@ -61,7 +61,7 @@ namespace netscribber
                         foreach (EventInfo eventElem in configX.controlEventsAndPredicates[control]._listEvent)
                         { //percorre a lista de eventos
 
-                            RecordPackage pack = new RecordPackage(control, this.richTextBox1, eventElem);
+                            RecordPackage pack = new RecordPackage(control, this , eventElem);
 
                             MethodInfo mInf = pack.GetType().GetMethod("funcDelegate", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
