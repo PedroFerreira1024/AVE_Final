@@ -94,6 +94,6 @@
         private System.Windows.Forms.Button Recoder_Stop;
         private System.Windows.Forms.Button Replay;
         private System.Windows.Forms.Button Clear;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

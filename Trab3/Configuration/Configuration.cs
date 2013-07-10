@@ -174,13 +174,16 @@ namespace Configuration
 
         IConfigurationRestriction<T> IConfigurationRestriction<T>.WithText(String name)
         {
-            bool isName = false;
+            List<Control> temp = new List<Control>();
             foreach (var c in filteredControls)
             {
                 if(c.Text.Contains(name))
-                    filteredControls.Remove(c);
+                    temp.Add(c);
             }
+            filteredControls = temp;
+
             return (IConfigurationRestriction<T>)this;
+
         }
 
 
@@ -238,7 +241,8 @@ namespace Configuration
         public void CostumConfiguration()
         {
             //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
-            Configuration<Button> this2 = (Configuration<Button>)For<Button>().WithName(".*").When("MouseUp");
+            Configuration<Form> this2 = (Configuration<Form>)
+                For<Form>().WithName(".*").When(".*");
 
             this.composedConfiguration = this2.composedConfiguration;
             this.controlEvents = this2.controlEvents;

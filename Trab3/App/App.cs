@@ -6,6 +6,7 @@ using netscribber;
 using System.Windows.Forms;
 using Configuration;
 using Recorder;
+using Scribber;
 
 namespace App
 {
@@ -15,7 +16,7 @@ namespace App
         static void Main(string[] args)
         {
             var recorderForm = new FormRecorder();
-            var toWatchForm = new CodeSelectorForm();
+            var toWatchForm = new ScribberForm();
             var config = new Configuration<Control>(toWatchForm);
             config.CostumConfiguration();
 

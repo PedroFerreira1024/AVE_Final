@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
 using netscribber;
 using Configuration;
 using System.Reflection;
@@ -24,26 +25,43 @@ namespace Recorder
             this.eventI = eventI;
             this.current = currentControl;
             eventType = eventI.EventHandlerType;
-
         }
 
-        public void funcDelegate(Object sender, EventArgs args)
+        public void funcDelegate(Object sender, MouseEventArgs args)
         {
             Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
             if (toAct.RecordPressed)
-                toAct.richTextBox1.AppendText("XXX\n");
-
-            //MethodInfo writerFunc = GetType().GetMethod("richTextBox1_TextChanged", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-            //Delegate d = Delegate.CreateDelegate( , writerFunc);
-
+            {
+                toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
+                toAct.replaylist.Add(new ReplayPackage(this, args, (Control)sender));
+            }
+            else
+            {
+                if(toAct.ReplayPressed)
+                toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
+            }
+            
         }
         
     }
 
+
+    public class ReplayPackage
+    {
+        public RecordPackage package;
+        public MouseEventArgs arguments;
+        public Control sender;
+
+        public ReplayPackage(RecordPackage pack, MouseEventArgs args, Control send)
+        {
+            package=pack;
+            arguments=args;
+            sender = send;
+        }
+    }
+
     public class RecorderReplayer
     {
-        private static String TEXTBOX_NAME = "richTextBox1";
         static FormRecorder formRecorder;
         static Configuration<Control> config;
 

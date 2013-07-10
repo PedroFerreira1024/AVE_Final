@@ -17,7 +17,9 @@ namespace netscribber
 {
     public partial class FormRecorder : Form
     {
-        public bool RecordPressed;
+        public bool RecordPressed=false, ReplayPressed=false;
+        public List<ReplayPackage> replaylist = new List<ReplayPackage>();
+
         public FormRecorder()
         {
             InitializeComponent();
@@ -39,12 +41,28 @@ namespace netscribber
 
         private void Replay_Click(object sender, EventArgs e)
         {
-            //reproduz a lista de eventos
+            ReplayPressed = true;
+            foreach (var r in replaylist)
+            {
+                Type fi = r.package.toAct.GetType();
+                //                sender---------
+                MethodInfo mi = r.package.current.GetType().GetMethod("On" + r.package.eventI.Name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+                Control c = r.sender;
+
+                object[] objs = new object[]{r.arguments};
+                mi.Invoke(r.sender,objs);
+                //
+                //FALTA SABER PORQUE NAO AFECTA A FORM QUE FOI ANALIZADA
+                //
+            }
+            ReplayPressed = false;
+
         }
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            //apaga a lista de eventos
+            richTextBox1.Clear();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
