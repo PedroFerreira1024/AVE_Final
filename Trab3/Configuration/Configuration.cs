@@ -243,7 +243,7 @@ namespace Configuration
         {
             //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
             Configuration<Control> this2 = (Configuration<Control>)
-                For<Control>().WithName(".*").When("MouseUp");
+                For<Control>().WithName(".*").When("Mouse");
 
             this.composedConfiguration = this2.composedConfiguration;
             this.controlEvents = this2.controlEvents;

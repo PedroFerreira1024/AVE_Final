@@ -16,33 +16,28 @@ namespace Recorder
         public Control current;
         public FormRecorder toAct;
         public Type eventType;
+        public List<Func<Control,bool>> predicates;
 
-
-        public RecordPackage(Control currentControl,Form toAct, EventInfo eventI)
+        public RecordPackage(Control currentControl, Form toAct, EventInfo eventI,List<Func<Control,bool>> pred)
         {
             this.toAct = (FormRecorder)toAct;
             this.eventI = eventI;
             this.current = currentControl;
             eventType = eventI.EventHandlerType;
+            predicates = pred;
         }
 
-        [STAThread]
         public void funcDelegate(Object sender, MouseEventArgs args)
         {
             Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
             if (toAct.RecordPressed)
             {
                 toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
-                toAct.replayList.Add(new ReplayPackage(this, args, (Control)sender));
+                toAct.addListReplayWithTime(new ReplayPackage(this, args, (Control)sender));
             }
-            else
-            {
-                if(toAct.ReplayPressed)
-                toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
-            }
-            
         }
-        
+
+
     }
 
 
@@ -51,12 +46,32 @@ namespace Recorder
         public RecordPackage package;
         public MouseEventArgs arguments;
         public Control sender;
+        public int time;
 
         public ReplayPackage(RecordPackage pack, MouseEventArgs args, Control send)
         {
             package=pack;
             arguments=args;
             sender = send;
+        }
+
+        public void replay(object sender, EventArgs e)
+        {
+            replay_Action();
+            ((Timer)sender).Stop();
+        }
+
+        private void replay_Action()
+        {
+            Type fi = this.package.toAct.GetType();
+            //                sender---------
+            MethodInfo mi = this.package.current.GetType().GetMethod("On" + this.package.eventI.Name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            Control c = this.sender;
+
+            object[] objs = new object[] { this.arguments };
+            mi.Invoke(this.sender, objs);
+            //this.package.toAct.Update();
+            this.package.current.Update();
         }
     }
 
@@ -80,7 +95,6 @@ namespace Recorder
     public class RecorderService
     {
         
-        [STAThread]
         static void Main()
         {
         }
