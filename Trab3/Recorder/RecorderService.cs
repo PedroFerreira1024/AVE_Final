@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
 using netscribber;
 using Configuration;
 using System.Reflection;
@@ -27,13 +26,14 @@ namespace Recorder
             eventType = eventI.EventHandlerType;
         }
 
+        [STAThread]
         public void funcDelegate(Object sender, MouseEventArgs args)
         {
             Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
             if (toAct.RecordPressed)
             {
                 toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
-                toAct.replaylist.Add(new ReplayPackage(this, args, (Control)sender));
+                toAct.replayList.Add(new ReplayPackage(this, args, (Control)sender));
             }
             else
             {

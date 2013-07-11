@@ -81,6 +81,7 @@ namespace Configuration
             controlEvents = new Dictionary<Control, ControlConfigPackage>();
 
             _formControls = new List<Control>();
+            _formControls.Add(f);
             foreach (Control c in f.Controls)
             {
                 _formControls.Add(c);
@@ -112,7 +113,7 @@ namespace Configuration
 
             foreach (Control t in control.Controls)
             {
-                if (t.GetType() == type)
+                if (type.IsAssignableFrom(t.GetType()))
                     list.Add(t);
 
                 list.AddRange(getControlsFromControl(t, list));
@@ -132,7 +133,7 @@ namespace Configuration
                
             foreach (Control c in _formControls)
             {
-                if (c.GetType() == type)
+                if (type.IsAssignableFrom(c.GetType()))
                     filteredControls.Add(c);
             }
             return (IConfigurationItem<T>)new Configuration<T>(_formControls, filteredControls);
@@ -241,8 +242,8 @@ namespace Configuration
         public void CostumConfiguration()
         {
             //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
-            Configuration<Form> this2 = (Configuration<Form>)
-                For<Form>().WithName(".*").When(".*");
+            Configuration<Control> this2 = (Configuration<Control>)
+                For<Control>().WithName(".*").When("MouseUp");
 
             this.composedConfiguration = this2.composedConfiguration;
             this.controlEvents = this2.controlEvents;

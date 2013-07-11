@@ -17,8 +17,16 @@ namespace netscribber
 {
     public partial class FormRecorder : Form
     {
+        public readonly int TIMER_INTERVAL = 1000/20;
+        public int tickCount = 0,currentTick=0,lastTicks=0;
+
+        public Timer t = new Timer();
         public bool RecordPressed=false, ReplayPressed=false;
-        public List<ReplayPackage> replaylist = new List<ReplayPackage>();
+
+        public List<ReplayPackage> replayList = new List<ReplayPackage>();
+        
+        private Dictionary<int, List<ReplayPackage>> replayTime = new Dictionary<int, List<ReplayPackage>>();
+        private int[] keys;
 
         public FormRecorder()
         {
@@ -31,33 +39,76 @@ namespace netscribber
             {
                 this.Recoder_Stop.Text = "Stop";
                 this.RecordPressed = true;
+                
+                timer_Start(timerRecord_Func);
             }
             else
             {
                 this.Recoder_Stop.Text = "Recorder";
                 this.RecordPressed = false;
+                timer_Stop();
             }
+        }
+
+        private void timer_Start(EventHandler target)
+        {
+            t.Tick += target;
+            t.Interval = TIMER_INTERVAL;
+            t.Start();
+        }
+
+        private void timer_Stop()
+        {
+            t.Stop();
+            keys = replayTime.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
+            currentTick=0;
+        }
+
+        private void timerRecord_Func(object sender, EventArgs e)
+        {
+            ++tickCount;
+            List<ReplayPackage> aux = new List<ReplayPackage>();
+            aux.AddRange(replayList);
+            if (replayList.Count > 0)
+            {
+                replayTime.Add(tickCount,aux);
+                replayList.Clear();
+            }
+        }
+
+        //======================================================================================================================
+        private void timerReplay_Func(object sender, EventArgs e)
+        {
+            ++tickCount;
         }
 
         private void Replay_Click(object sender, EventArgs e)
         {
             ReplayPressed = true;
-            foreach (var r in replaylist)
+            
+            for (int i = 0; i < keys.Length; ++i)
+            {
+                System.Threading.Thread.Sleep((keys[i] - lastTicks) * TIMER_INTERVAL);
+                replay_Moment(i);
+            }
+            
+            ReplayPressed = false;
+        }
+
+        private void replay_Moment(int moment)
+        {
+            foreach (var r in replayTime[keys[moment]])
             {
                 Type fi = r.package.toAct.GetType();
                 //                sender---------
                 MethodInfo mi = r.package.current.GetType().GetMethod("On" + r.package.eventI.Name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-
                 Control c = r.sender;
 
-                object[] objs = new object[]{r.arguments};
-                mi.Invoke(r.sender,objs);
-                //
-                //FALTA SABER PORQUE NAO AFECTA A FORM QUE FOI ANALIZADA
-                //
+                object[] objs = new object[] { r.arguments };
+                mi.Invoke(r.sender, objs);
+                Update();
             }
-            ReplayPressed = false;
-
+            lastTicks = keys[moment];
         }
 
         private void Clear_Click(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace App
         static void Main(string[] args)
         {
             var recorderForm = new FormRecorder();
-            var toWatchForm = new ScribberForm();
+            var toWatchForm = new CodeSelectorForm();
             var config = new Configuration<Control>(toWatchForm);
             config.CostumConfiguration();
 
