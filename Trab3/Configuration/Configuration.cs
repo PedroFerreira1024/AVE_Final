@@ -28,15 +28,13 @@ namespace Configuration
         }
     }
 
-    public class ConfigurationX<T> where T:Control
+    public class ConfigurationX
     {
         public Dictionary<Control, ControlConfigPackage> controlEventsAndPredicates;
-        public List<T> controls;
 
-        public ConfigurationX(Dictionary<Control, ControlConfigPackage> dictionary, List<T> list)
+        public ConfigurationX(Dictionary<Control, ControlConfigPackage> dictionary)
         {
             controlEventsAndPredicates = dictionary;
-            controls = list;
         }
     }
 
@@ -62,6 +60,7 @@ namespace Configuration
 
     public class Configuration<T> : IConfiguration<T>, IConfigurationItem<T>, IConfigurationRestriction<T> where T : Control
     {
+        private int whenCount,forCount;
         private List<Control> _formControls;
 
         public Dictionary<Control, ControlConfigPackage> controlEvents;
@@ -70,14 +69,14 @@ namespace Configuration
         private List<EventInfo> eventsList;
         private List<Func<Control,bool>> predicateList;
 
-        public Dictionary<Type,List<ConfigurationX<Control>>> composedConfiguration;
+        public Dictionary<Type,List<ConfigurationX>> composedConfiguration;
 
         public Configuration(Form f)
         {
             filteredControls = new List<Control>();
             eventsList = new List<EventInfo>();
             predicateList = new List<Func<Control, bool>>();
-            composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
+            composedConfiguration = new Dictionary<Type, List<ConfigurationX>>();
             controlEvents = new Dictionary<Control, ControlConfigPackage>();
 
             _formControls = new List<Control>();
@@ -96,11 +95,11 @@ namespace Configuration
 
             eventsList = new List<EventInfo>();
             predicateList = new List<Func<Control, bool>>();
-            composedConfiguration = new Dictionary<Type, List<ConfigurationX<Control>>>();
+            composedConfiguration = new Dictionary<Type, List<ConfigurationX>>();
             controlEvents = new Dictionary<Control, ControlConfigPackage>();
         }
 
-        public Dictionary<Type, List<ConfigurationX<Control>>> getComposedConfiguration() {
+        public Dictionary<Type, List<ConfigurationX>> getComposedConfiguration() {
             return composedConfiguration;
         }
 
@@ -129,6 +128,7 @@ namespace Configuration
 
         IConfigurationItem<T> IConfiguration<T>.For<T>()
         {
+            ++forCount;
             Type type = typeof(T);
                
             foreach (Control c in _formControls)
@@ -190,6 +190,7 @@ namespace Configuration
 
         public IConfiguration<T> When(params string[] eventSet)
         {
+            ++whenCount;
             Type controlType = typeof(T);
 
             foreach (String eventName in eventSet)
@@ -207,7 +208,7 @@ namespace Configuration
                 try
                 {
                     controlEvents.Add(control, new ControlConfigPackage(eventsList, predicateList));
-                    //marcar no dicionario » controlEvents, pelo nome do controlo, o eventInfo
+                    //marcar no dicionario » controlEvents, pelo controlo, o eventInfo
                 }
                 catch (ArgumentException)
                 {
@@ -221,8 +222,8 @@ namespace Configuration
 
             
 
-            List<ConfigurationX<Control>> listToAdd = new List<ConfigurationX<Control>>();
-            listToAdd.Add(new ConfigurationX<Control>(controlEvents, filteredControls));///////////////////////////////////////////////////////////////////////////////
+            List<ConfigurationX> listToAdd = new List<ConfigurationX>();
+            listToAdd.Add(new ConfigurationX(controlEvents));
             try
             {
                 composedConfiguration[controlType].AddRange(listToAdd);
@@ -242,13 +243,19 @@ namespace Configuration
         public void CostumConfiguration()
         {
             //this2 tem de ser do tipo Configuration<X> em que X é o tipo do ultimo For da Configuracao
-            Configuration<Control> this2 = (Configuration<Control>)
-                For<Control>().WithName(".*").When("Mouse");
+            Configuration<Button> this2 = (Configuration<Button>)
+                For<Button>().WithName(".*").When("Mouse").For<Button>();
 
             this.composedConfiguration = this2.composedConfiguration;
             this.controlEvents = this2.controlEvents;
         }
 
         
+    }
+
+    public class InvalidConfigurationException : Exception
+    {
+        public InvalidConfigurationException() : base ("The current configuration isn't valid!"){
+        }
     }
 }

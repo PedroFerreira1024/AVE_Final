@@ -27,12 +27,17 @@ namespace Recorder
             predicates = pred;
         }
 
-        public void funcDelegate(Object sender, MouseEventArgs args)
+        public void funcDelegate(Object sender, EventArgs args)
         {
-            Console.WriteLine("Estou a fazer a funcao funcDelegate!!");
             if (toAct.RecordPressed)
             {
-                toAct.richTextBox1.AppendText(eventI.Name + " at " + "XX-XX-XX" + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
+                foreach (var func in predicates)
+                {
+                    if (!func(current))
+                        return;
+                }
+
+                toAct.richTextBox1.AppendText(eventI.Name + " at " + toAct.getTicksTime() + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
                 toAct.addListReplayWithTime(new ReplayPackage(this, args, (Control)sender));
             }
         }
@@ -44,11 +49,11 @@ namespace Recorder
     public class ReplayPackage
     {
         public RecordPackage package;
-        public MouseEventArgs arguments;
+        public EventArgs arguments;
         public Control sender;
         public int time;
 
-        public ReplayPackage(RecordPackage pack, MouseEventArgs args, Control send)
+        public ReplayPackage(RecordPackage pack, EventArgs args, Control send)
         {
             package=pack;
             arguments=args;

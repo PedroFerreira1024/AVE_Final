@@ -17,7 +17,8 @@ namespace netscribber
 {
     public partial class FormRecorder : Form
     {
-        public readonly int TIMER_INTERVAL = 1000/20;
+        private readonly int TIMER_INTERVAL = 1000/20;
+        private readonly int MINUTE=60000, SECOND=1000;
         public int tickCount = 0;
 
         public Timer t = new Timer();
@@ -66,6 +67,12 @@ namespace netscribber
             tickCount=0;
         }
 
+        public String getTicksTime()
+        {
+            TimeSpan t = TimeSpan.FromMilliseconds(tickCount * TIMER_INTERVAL);
+            return t.Minutes +"."+ t.Seconds +"."+ t.Milliseconds;
+        }
+
         private void timerRecord_Func(object sender, EventArgs e)
         {
             ++tickCount;
@@ -106,8 +113,8 @@ namespace netscribber
         {
             var dic = config.getComposedConfiguration();
 
-            foreach (List<ConfigurationX<Control>> elem in dic.Values) //Percorre o dicionario do composedconfiguration
-                foreach (ConfigurationX<Control> configX in elem)   // Percorre a lista ConfigurationX
+            foreach (List<ConfigurationX> elem in dic.Values) //Percorre o dicionario do composedconfiguration
+                foreach (ConfigurationX configX in elem)   // Percorre a lista ConfigurationX
                     foreach (Control control in configX.controlEventsAndPredicates.Keys)
                     { // percorre o dicionario do tipo configurationX
                         foreach (EventInfo eventElem in configX.controlEventsAndPredicates[control]._listEvent)
