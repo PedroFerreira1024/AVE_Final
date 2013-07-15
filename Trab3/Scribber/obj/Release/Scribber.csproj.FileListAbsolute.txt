@@ -1,0 +1,8 @@
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Release\netscribber.exe.config
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Release\netscribber.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Release\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Release\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Release\Scribber.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Release\Scribber.ScribberForm.resources
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Release\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\obj\Release\netscribber.exe

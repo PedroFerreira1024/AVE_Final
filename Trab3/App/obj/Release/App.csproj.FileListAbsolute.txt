@@ -1,0 +1,13 @@
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\App.exe.config
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\App.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\App.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\CodeSelector.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\netscribber.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\Recorder.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\CodeSelector.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\bin\Release\Recorder.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\obj\Release\App.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\obj\Release\App.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\App\obj\Release\App.pdb

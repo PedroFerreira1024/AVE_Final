@@ -94,3 +94,5 @@ C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\bin\Debug\Configur
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csprojResolveAssemblyReference.cache
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.ScribberForm.resources
 C:\Users\André\Desktop\Repositorios\AVE_Final\Trab3\Scribber\obj\Debug\Scribber.csproj.GenerateResource.Cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.CodeAnalysisLog.xml
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Scribber\bin\Debug\netscribber.exe.lastcodeanalysissucceeded

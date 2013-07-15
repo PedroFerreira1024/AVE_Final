@@ -31,7 +31,7 @@
             this.Recoder_Stop = new System.Windows.Forms.Button();
             this.Replay = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.listBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // Recoder_Stop
@@ -64,22 +64,20 @@
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
-            // richTextBox1
+            // listBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(531, 391);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.listBox.FormattingEnabled = true;
+            this.listBox.Location = new System.Drawing.Point(12, 12);
+            this.listBox.Name = "listBox";
+            this.listBox.Size = new System.Drawing.Size(522, 381);
+            this.listBox.TabIndex = 3;
             // 
             // FormRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 469);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.listBox);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.Replay);
             this.Controls.Add(this.Recoder_Stop);
@@ -94,6 +92,6 @@
         private System.Windows.Forms.Button Recoder_Stop;
         private System.Windows.Forms.Button Replay;
         private System.Windows.Forms.Button Clear;
-        public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.ListBox listBox;
     }
 }

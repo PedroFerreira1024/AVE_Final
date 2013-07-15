@@ -1,0 +1,4 @@
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\bin\Release\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\bin\Release\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Release\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Configuration\obj\Release\Configuration.pdb

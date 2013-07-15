@@ -17,14 +17,14 @@ namespace netscribber
 {
     public partial class FormRecorder : Form
     {
-        private readonly int TIMER_INTERVAL = 1000/20;
-        private readonly int MINUTE=60000, SECOND=1000;
-        public int tickCount = 0;
+        private readonly int TIMER_INTERVAL = 1000/25;
+        private int tickCount = 0,replayIndex;
 
         public Timer t = new Timer();
         public bool RecordPressed = false;
 
         private List<ReplayPackage> replayList = new List<ReplayPackage>();
+        private ReplayPackage[] toReplayList;
         
         public FormRecorder()
         {
@@ -37,7 +37,7 @@ namespace netscribber
             {
                 this.Recoder_Stop.Text = "Stop";
                 this.RecordPressed = true;
-                
+                replayList.Clear();
                 timer_Start(t,timerRecord_Func);
             }
             else
@@ -50,6 +50,7 @@ namespace netscribber
 
         private void timer_Start(Timer timer, EventHandler target)
         {
+            tickCount = 0;
             timer.Tick += target;
             timer.Interval = TIMER_INTERVAL;
             timer.Start();
@@ -64,7 +65,6 @@ namespace netscribber
         private void timer_Stop(Timer timer)
         {
             timer.Stop();
-            tickCount=0;
         }
 
         public String getTicksTime()
@@ -81,56 +81,41 @@ namespace netscribber
         private void timerReplay_Func(object sender, EventArgs e)
         {
 
+            ++tickCount;
+            if (replayIndex >= toReplayList.Length)
+            {
+                timer_Stop((Timer)sender);
+                replayIndex = 0;
+                return;
+            }
+
+            ReplayPackage rep = toReplayList[replayIndex];
+            while (replayIndex < toReplayList.Length && rep.time == tickCount)
+            {
+                rep = toReplayList[replayIndex];
+                rep.replay_Action();
+                ++replayIndex;
+            }
         }
 
         private void Replay_Click(object sender, EventArgs e)
         {
-            timer_Start(t, timerRecord_Func);
-            
-            foreach(var rep in replayList)
-            {
-                Timer auxTimer = new Timer();
-                auxTimer.Interval = (rep.time - tickCount) * TIMER_INTERVAL;
-                auxTimer.Tick+=rep.replay;
-                auxTimer.Start();
-            }
-
-            timer_Stop(t);
+            t = new Timer();
+            timer_Start(t,timerReplay_Func);
+            toReplayList = replayList.ToArray();
         }
 
 
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            richTextBox1.Clear();
+            listBox.Items.Clear();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
         }
 
-        public void EnableRecord(Configuration<Control> config)
-        {
-            var dic = config.getComposedConfiguration();
-
-            foreach (List<ConfigurationX> elem in dic.Values) //Percorre o dicionario do composedconfiguration
-                foreach (ConfigurationX configX in elem)   // Percorre a lista ConfigurationX
-                    foreach (Control control in configX.controlEventsAndPredicates.Keys)
-                    { // percorre o dicionario do tipo configurationX
-                        foreach (EventInfo eventElem in configX.controlEventsAndPredicates[control]._listEvent)
-                        { //percorre a lista de eventos
-                            
-                            List<Func<Control,bool>> list = configX.controlEventsAndPredicates[control]._listfunc;
-                            
-                            RecordPackage pack = new RecordPackage(control,this,eventElem,list);
-
-                            MethodInfo mInf = pack.GetType().GetMethod("funcDelegate", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-                            Delegate del = Delegate.CreateDelegate(eventElem.EventHandlerType, pack, mInf, false);
-
-                            eventElem.AddEventHandler(control, del);
-                        }    
-                    }
-        }
+        
     }
 }

@@ -1,0 +1,11 @@
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Release\Recorder.exe.config
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Release\Recorder.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Release\Recorder.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Release\Configuration.dll
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\bin\Release\Configuration.pdb
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\Recorder.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\netscribber.FormRecorder.resources
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\Recorder.Properties.Resources.resources
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\Recorder.csproj.GenerateResource.Cache
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\Recorder.exe
+C:\Users\Pedro\AveFinal\AVE_Final\Trab3\Recorder\obj\Release\Recorder.pdb

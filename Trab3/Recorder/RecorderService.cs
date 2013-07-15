@@ -37,12 +37,10 @@ namespace Recorder
                         return;
                 }
 
-                toAct.richTextBox1.AppendText(eventI.Name + " at " + toAct.getTicksTime() + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !\n");
+                toAct.listBox.Items.Add(eventI.Name + " at " + toAct.getTicksTime() + " occured on " + ((Control)sender).GetType().Name + " " + ((Control)sender).Name + " !");
                 toAct.addListReplayWithTime(new ReplayPackage(this, args, (Control)sender));
             }
         }
-
-
     }
 
 
@@ -51,6 +49,8 @@ namespace Recorder
         public RecordPackage package;
         public EventArgs arguments;
         public Control sender;
+        public Type formType;
+        public MethodInfo method;
         public int time;
 
         public ReplayPackage(RecordPackage pack, EventArgs args, Control send)
@@ -58,24 +58,14 @@ namespace Recorder
             package=pack;
             arguments=args;
             sender = send;
+            formType = package.toAct.GetType();
+            method = package.current.GetType().GetMethod("On" + this.package.eventI.Name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
         }
 
-        public void replay(object sender, EventArgs e)
-        {
-            replay_Action();
-            ((Timer)sender).Stop();
-        }
-
-        private void replay_Action()
-        {
-            Type fi = this.package.toAct.GetType();
-            //                sender---------
-            MethodInfo mi = this.package.current.GetType().GetMethod("On" + this.package.eventI.Name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            Control c = this.sender;
-
-            object[] objs = new object[] { this.arguments };
-            mi.Invoke(this.sender, objs);
-            //this.package.toAct.Update();
+        public void replay_Action()
+        {            
+            method.Invoke(this.sender, new object[] { this.arguments });
+            
             this.package.current.Update();
         }
     }
@@ -91,15 +81,30 @@ namespace Recorder
             formRecorder = form;
         }
 
-        public void Start()
+        public void EnableConfig()
         {
-            formRecorder.EnableRecord(config);
+            var dic = config.getComposedConfiguration();
+
+            foreach (List<ConfigurationX> elem in dic.Values) //Percorre o dicionario do composedconfiguration
+                foreach (ConfigurationX configX in elem)   // Percorre a lista ConfigurationX
+                    foreach (Control control in configX.controlEventsAndPredicates.Keys)
+                    { // percorre o dicionario do tipo configurationX
+                        foreach (EventInfo eventElem in configX.controlEventsAndPredicates[control]._listEvent)
+                        { //percorre a lista de eventos
+
+                            List<Func<Control, bool>> list = configX.controlEventsAndPredicates[control]._listfunc;
+
+                            RecordPackage pack = new RecordPackage(control, formRecorder, eventElem, list);
+
+                            MethodInfo mInf = pack.GetType().GetMethod("funcDelegate", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+                            Delegate del = Delegate.CreateDelegate(eventElem.EventHandlerType, pack, mInf, false);
+
+                            eventElem.AddEventHandler(control, del);
+                        }
+                    }
         }
-    }
-    
-    public class RecorderService
-    {
-        
+
         static void Main()
         {
         }

@@ -16,12 +16,12 @@ namespace App
         static void Main(string[] args)
         {
             var recorderForm = new FormRecorder();
-            var toWatchForm = new CodeSelectorForm();
+            var toWatchForm = new ScribberForm();
             var config = new Configuration<Control>(toWatchForm);
             config.CostumConfiguration();
 
             var recorderService = new RecorderReplayer(config,recorderForm);
-            recorderService.Start();
+            recorderService.EnableConfig();
 
             recorderForm.Show();
             Application.Run(toWatchForm);
